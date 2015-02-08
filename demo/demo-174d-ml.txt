@@ -33,12 +33,14 @@ $1785  8D 4F E8    STA $E84F
 $1788  A9 00       LDA #$00
 $178a  8D 4F E8    STA $E84F
 $178d  60          RTS
+
 $178e  A0 07       LDY #$07
 $1790  B1 FB       LDA ($FB),Y
 $1792  20 4D 17    JSR $174D
 $1795  88          DEY
 $1796  10 F8       BPL $1790
 $1798  60          RTS
+
 $1799  A9 FF       LDA #$FF
 $179b  8D 43 E8    STA $E843
 $179e  A9 00       LDA #$00
@@ -61,10 +63,12 @@ $17bd  85 34       STA $34
 $17bf  A9 17       LDA #$17
 $17c1  85 35       STA $35
 $17c3  60          RTS
+
 $17c4  83 85       SAX ($85,X)
 $17c6  2C A9 0F    BIT $0FA9
 $17c9  85 2D       STA $2D
 $17cb  60          RTS
+
 $17cc  A9 4D       LDA #$4D
 $17ce  85 34       STA $34
 $17d0  A9 17       LDA #$17
@@ -78,6 +82,7 @@ $17de  85 2D       STA $2D
 $17e0  85 2B       STA $2B
 $17e2  85 2F       STA $2F
 $17e4  60          RTS
+
 $17e5  A9 00       LDA #$00
 $17e7  85 FB       STA $FB
 $17e9  A8          TAY
@@ -93,6 +98,7 @@ $17f9  A5 FC       LDA $FC
 $17fb  C9 84       CMP #$84
 $17fd  D0 EF       BNE $17EE
 $17ff  60          RTS
+
 $1800  00          BRK
 $1801  08          PHP
 $1802  10 21       BPL $1825
