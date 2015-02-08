@@ -1,39 +1,43 @@
 ;Send one byte of one character to the HAL.
 ;
-$174d  48          PHA
-$174e  4A          LSR A
-$174f  4A          LSR A
+$174d  48          PHA          ;Save the byte
+$174e  4A          LSR A        ;Shift high nibble -> low nibble
+$174f  4A          LSR A        ;  High nibble will become zeroes
 $1750  4A          LSR A
 $1751  4A          LSR A
-$1752  09 C0       ORA #$C0
-$1754  8D 4F E8    STA $E84F
-$1757  29 0F       AND #$0F
-$1759  8D 4F E8    STA $E84F
-$175c  68          PLA
-$175d  29 0F       AND #$0F
-$175f  09 80       ORA #$80
-$1761  8D 4F E8    STA $E84F
-$1764  29 0F       AND #$0F
-$1766  8D 4F E8    STA $E84F
-$1769  8A          TXA
+$1752  09 C0       ORA #$C0     ;Turn on bits 7 and 6
+$1754  8D 4F E8    STA $E84F    ;Put byte on user port
+$1757  29 0F       AND #$0F     ;Turn off all bits in high nibble
+$1759  8D 4F E8    STA $E84F    ;Put byte on user port
+
+$175c  68          PLA          ;Get the original byte
+$175d  29 0F       AND #$0F     ;Turn off all bits in high nibble
+$175f  09 80       ORA #$80     ;Turn on bit 7
+$1761  8D 4F E8    STA $E84F    ;Put byte on user port
+$1764  29 0F       AND #$0F     ;Turn off all bits in high nibble
+$1766  8D 4F E8    STA $E84F    ;Put byte on user port
+
+$1769  8A          TXA          ;Get index of current char (0-63)
 $176a  4A          LSR A
 $176b  4A          LSR A
-$176c  09 40       ORA #$40
-$176e  8D 4F E8    STA $E84F
-$1771  29 0F       AND #$0F
-$1773  8D 4F E8    STA $E84F
-$1776  8A          TXA
+$176c  09 40       ORA #$40     ;Set on bit 6
+$176e  8D 4F E8    STA $E84F    ;Put byte on user port
+$1771  29 0F       AND #$0F     ;Turn off all bits in high nibble
+$1773  8D 4F E8    STA $E84F    ;Put byte on user port
+
+$1776  8A          TXA          ;Get index of current char (0-63)
 $1777  0A          ASL A
 $1778  0A          ASL A
 $1779  0A          ASL A
-$177a  29 18       AND #$18
-$177c  8D 4F E8    STA $E84F
-$177f  98          TYA
+$177a  29 18       AND #$18     ;Turn off all bits except bit 4 and 3
+$177c  8D 4F E8    STA $E84F    ;Put byte on user port
+
+$177f  98          TYA          ;Get index of current byte within char (0-7)
 $1780  0D 4F E8    ORA $E84F
-$1783  09 20       ORA #$20
-$1785  8D 4F E8    STA $E84F
-$1788  A9 00       LDA #$00
-$178a  8D 4F E8    STA $E84F
+$1783  09 20       ORA #$20     ;Turn on bit 5
+$1785  8D 4F E8    STA $E84F    ;Put byte on user port
+$1788  A9 00       LDA #$00     ;Turn off all bits
+$178a  8D 4F E8    STA $E84F    ;Put byte on user port
 $178d  60          RTS
 
 ;Send one character (8 bytes) to the HAL.  The bytes are
