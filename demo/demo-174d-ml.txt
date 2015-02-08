@@ -1,0 +1,117 @@
+$174d  48          PHA
+$174e  4A          LSR A
+$174f  4A          LSR A
+$1750  4A          LSR A
+$1751  4A          LSR A
+$1752  09 C0       ORA #$C0
+$1754  8D 4F E8    STA $E84F
+$1757  29 0F       AND #$0F
+$1759  8D 4F E8    STA $E84F
+$175c  68          PLA
+$175d  29 0F       AND #$0F
+$175f  09 80       ORA #$80
+$1761  8D 4F E8    STA $E84F
+$1764  29 0F       AND #$0F
+$1766  8D 4F E8    STA $E84F
+$1769  8A          TXA
+$176a  4A          LSR A
+$176b  4A          LSR A
+$176c  09 40       ORA #$40
+$176e  8D 4F E8    STA $E84F
+$1771  29 0F       AND #$0F
+$1773  8D 4F E8    STA $E84F
+$1776  8A          TXA
+$1777  0A          ASL A
+$1778  0A          ASL A
+$1779  0A          ASL A
+$177a  29 18       AND #$18
+$177c  8D 4F E8    STA $E84F
+$177f  98          TYA
+$1780  0D 4F E8    ORA $E84F
+$1783  09 20       ORA #$20
+$1785  8D 4F E8    STA $E84F
+$1788  A9 00       LDA #$00
+$178a  8D 4F E8    STA $E84F
+$178d  60          RTS
+$178e  A0 07       LDY #$07
+$1790  B1 FB       LDA ($FB),Y
+$1792  20 4D 17    JSR $174D
+$1795  88          DEY
+$1796  10 F8       BPL $1790
+$1798  60          RTS
+$1799  A9 FF       LDA #$FF
+$179b  8D 43 E8    STA $E843
+$179e  A9 00       LDA #$00
+$17a0  85 FB       STA $FB
+$17a2  A9 1E       LDA #$1E
+$17a4  85 FC       STA $FC
+$17a6  A2 00       LDX #$00
+$17a8  20 8E 17    JSR $178E
+$17ab  A5 FB       LDA $FB
+$17ad  18          CLC
+$17ae  69 08       ADC #$08
+$17b0  85 FB       STA $FB
+$17b2  90 02       BCC $17B6
+$17b4  E6 FC       INC $FC
+$17b6  E8          INX
+$17b7  E0 40       CPX #$40
+$17b9  D0 ED       BNE $17A8
+$17bb  A9 4D       LDA #$4D
+$17bd  85 34       STA $34
+$17bf  A9 17       LDA #$17
+$17c1  85 35       STA $35
+$17c3  60          RTS
+$17c4  83 85       SAX ($85,X)
+$17c6  2C A9 0F    BIT $0FA9
+$17c9  85 2D       STA $2D
+$17cb  60          RTS
+$17cc  A9 4D       LDA #$4D
+$17ce  85 34       STA $34
+$17d0  A9 17       LDA #$17
+$17d2  85 35       STA $35
+$17d4  A9 FF       LDA #$FF
+$17d6  85 2C       STA $2C
+$17d8  85 2A       STA $2A
+$17da  85 2E       STA $2E
+$17dc  A9 12       LDA #$12
+$17de  85 2D       STA $2D
+$17e0  85 2B       STA $2B
+$17e2  85 2F       STA $2F
+$17e4  60          RTS
+$17e5  A9 00       LDA #$00
+$17e7  85 FB       STA $FB
+$17e9  A8          TAY
+$17ea  A9 80       LDA #$80
+$17ec  85 FC       STA $FC
+$17ee  B1 FB       LDA ($FB),Y
+$17f0  49 80       EOR #$80
+$17f2  91 FB       STA ($FB),Y
+$17f4  C8          INY
+$17f5  D0 F7       BNE $17EE
+$17f7  E6 FC       INC $FC
+$17f9  A5 FC       LDA $FC
+$17fb  C9 84       CMP #$84
+$17fd  D0 EF       BNE $17EE
+$17ff  60          RTS
+$1800  00          BRK
+$1801  08          PHP
+$1802  10 21       BPL $1825
+$1804  49 F1       EOR #$F1
+$1806  11 21       ORA ($21),Y
+$1808  00          BRK
+$1809  10 10       BPL $181B
+$180b  FE 22 22    INC $2222,X
+$180e  22          JAM
+$180f  52          JAM
+$1810  21 45       AND ($45,X)
+$1812  FD 15 11    SBC $1115,X
+$1815  55 95       EOR $95,X
+$1817  11 4A       ORA ($4A),Y
+$1819  86 02       STX $02
+$181b  02          JAM
+$181c  02          JAM
+$181d  02          JAM
+$181e  06 02       ASL $02
+$1820  00          BRK
+$1821  00          BRK
+$1822  0F 08 08    SLO $0808

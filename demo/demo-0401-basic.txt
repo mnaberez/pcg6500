@@ -1,0 +1,104 @@
+  10 sys6092:zz=-1
+  50 restore:zz=notzz:pr=6051:sy=6041:ry=6117
+ 100 print"{clr}":p=59468:a$="{home}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}":poke59458,37
+ 110 pokep,14:pokepr,30:syssy
+ 120 print"{home}                         {SHIFT-*}A  X
+ 130 print"                         BCDEH
+ 140 print"                        FG{rvon} {rvof}IJ
+ 150 print"                        KLMN
+ 160 print"                        OP
+ 170 print"                        Q{rvon} {rvof}R
+ 180 print"                        S{rvon} {rvof}T
+ 190 print"                       UVW
+ 200 print"                      YZ{rvon} {rvof}[
+ 210 print"                   \]~_{rvon} {rvof}{$a0}{CBM-K}
+ 220 print"                 {CBM-I}{CBM-T}{CBM-@}{CBM-G}{CBM-+}{CBM-M}{CBM-POUND}{SHIFT-POUND}{CBM-N}
+ 230 print"                 {CBM-Q}{CBM-D}{CBM-Z}{CBM-S}{CBM-P}{CBM-A} {CBM-X}
+ 240 print"                {CBM-E}{CBM-R}{CBM-W}{CBM-H}
+ 250 print"                 {CBM-J}{CBM-L}
+ 260 print"                 {CBM-Y}{CBM-U}
+ 270 print"                {CBM-O}
+ 280 print"               {SHIFT-@}
+ 290 print"              {CBM-F}{CBM-C}
+ 300 print:print"             {CBM-V}
+ 310 print"            {CBM-B}":ifzzthensysry
+ 320 gosub870:poke59464,0:fora=1to1000:next:print"{clr}";:pokepr,28:syssy
+ 330 printspc(7)"1 up   high score   2 up"
+ 340 printspc(7)"92340     92340       00"
+ 350 printleft$(a$,24)spc(6)"credit 00"spc(13)"{up}{CBM-Z}{CBM-Z}{CBM-Z}{CBM-Z}{CBM-P}{CBM-E}{CBM-P}{CBM-E}{CBM-P}{CBM-E}{down}{left}{left}{left}{left}{left}{left}{left}{left}{left}{left}{CBM-S}{CBM-S}{CBM-S}{CBM-S}{CBM-A} {CBM-A} {CBM-A}"
+ 360 printleft$(a$,5)spc(15)"{SHIFT-*}A{down}{left}{left}BC{up}    {SHIFT-*}A{down}{left}{left}BC"
+ 370 printspc(13)"DEDEDEDEDEDE"
+ 380 printspc(11)"DEDEDEDEDEDEDEDE"
+ 390 printspc(9)"DEDEDEDEDEDEDEDEDEDE"
+ 400 printspc(9)"DEDEDEDEDEDEDEDEDEDE"
+ 410 printspc(9)"DEDEDEDEDEDEDEDEDEDE"
+ 420 printspc(17)"{down}{down}{down}{down}{down}{down}{down}{down}{CBM-D}{down}{left}{CBM-POUND}{SHIFT-POUND}{down}{left}{left}{CBM-N}{CBM-Q}"
+ 430 print"{home}":gosub790:forb=1to5
+ 440 printleft$(a$,7)spc(13)"FGFGFGFGFGFG"
+ 450 printspc(11)"FGFGFGFGFGFGFGFG"
+ 460 printspc(9)"FGFGFGFGFGFGFGFGFGFG"
+ 470 printspc(9)"FGFGFGFGFGFGFGFGFGFG"
+ 480 printspc(9)"FGFGFGFGFGFGFGFGFGFG"
+ 490 gosub850
+ 500 printleft$(a$,7)spc(13)"DEDEDEDEDEDE"
+ 510 printspc(11)"DEDEDEDEDEDEDEDE"
+ 520 printspc(9)"DEDEDEDEDEDEDEDEDEDE"
+ 530 printspc(9)"DEDEDEDEDEDEDEDEDEDE"
+ 540 printspc(9)"DEDEDEDEDEDEDEDEDEDE"
+ 550 gosub850
+ 560 printleft$(a$,7)spc(13)"HIHIHIHIHIHI"
+ 570 printspc(11)"HIHIHIHIHIHIHIHI"
+ 580 printspc(9)"HIHIHIHIHIHIHIHIHIHI"
+ 590 printspc(9)"HIHIHIHIHIHIHIHIHIHI"
+ 600 printspc(9)"HIHIHIHIHIHIHIHIHIHI"
+ 610 gosub860
+ 620 printleft$(a$,7)spc(13)"DEDEDEDEDEDE"
+ 630 printspc(11)"DEDEDEDEDEDEDEDE"
+ 640 printspc(9)"DEDEDEDEDEDEDEDEDEDE"
+ 650 printspc(9)"DEDEDEDEDEDEDEDEDEDE"
+ 660 printspc(9)"DEDEDEDEDEDEDEDEDEDE"
+ 670 gosub850:next:poke59464,0
+ 680 printleft$(a$,17)spc(14)"game over":fora=1to1000:next
+ 690 print"{clr}":pokepr,26:syssy
+ 700 y=9:x=15:gosub1000:y=2:x=1:gosub1000:y=15:x=1:gosub1000:y=2:x=29:gosub1000
+ 710 y=15:x=29:gosub1000:ifzzthensysry
+ 770 fora=255to0step-1:poke59464,a:next
+ 780 fora=0to255:poke59464,a:next:poke59464,0:fora=0to4000:next:goto1070
+ 790 poke59467,16:poke59466,9
+ 800 fora=60to80:poke59464,a:next
+ 810 fora=1to41
+ 820 readx:poke59464,x
+ 830 forb=1to45:next:next
+ 840 forg=1to2:fora=83to60step-1:poke59464,a:next:next:poke59464,0:return
+ 850 poke59466,4
+ 860 fora=195to225:poke59464,a:poke59464,a+30:next:return
+ 870 poke59467,16:poke59466,7
+ 880 fora=1to92:readc:poke59464,c:forb=1to50:nextb,a:poke59464,0:return
+ 890 data211,211,237,237,211,211,188,188,157,157,188,188,211,211,211,211
+ 900 data188,188,157,157,140,140,157,140,104,104,124,124,140,140,157,157
+ 910 data188,188,157,157,140,140,140,140,104,104,117,117,104,104,104,104
+ 920 data188,188,157,157,140,140,157,157,188,188,188,157,211,211,211,211
+ 930 data140,140,117,117,104,104,104,104,117,117,104,104,140,140,157,157
+ 940 data140,140,157,188,211,211,211,211,211,211,211,211
+ 950 data 167,124,167,124,99,124,99,83,99,83,61,61,61,0,0
+ 960 data 167,124,167,124,99,124,99,83,99,83,61,61,61,0,0
+ 970 data99,109,105,110,105,110,105,110,105,110,105
+1000 printleft$(a$,y)spc(x)" ABCDEFGH"
+1010 printspc(x)"IJKLMNOPQ"
+1020 printspc(x)"RSTUVWXYZ"
+1030 printspc(x)"[\]~_{$a0}{CBM-K}{CBM-I}{CBM-T}"
+1040 printspc(x)"{CBM-@}{CBM-G}{CBM-+}{CBM-M}{CBM-POUND}{SHIFT-POUND}{CBM-N}{CBM-Q}{CBM-D}"
+1050 printspc(x)"{CBM-Z}{CBM-S}{CBM-P}{CBM-A}{CBM-E}{CBM-R}{CBM-W}{CBM-H}{CBM-J}"
+1060 printspc(x)" {CBM-Y}{CBM-U}{CBM-O}{SHIFT-@}{CBM-F}{CBM-C}{CBM-X}":return
+1070 print"{clr}";:pokepr,24:syssy
+1080 printspc(15)"{SHIFT-*}ADEHI{down}{left}{left}{left}{left}{left}{left}BCFGJK"
+1090 print"{CBM-X}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-U}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-U}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-U}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-U}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-C}";
+1100 print"{CBM-J}PQTU{CBM-J}  DELM  {CBM-J}{$a0}{CBM-K}{CBM-@}{CBM-G}{CBM-J}  {CBM-POUND}{SHIFT-POUND}{CBM-D}{CBM-Z}  {CBM-J}  XY\]    {CBM-J}";
+1110 print"{CBM-J}RSVW{CBM-J}  FGNO  {CBM-J}{CBM-I}{CBM-T}{CBM-+}{CBM-M}{CBM-J}  {CBM-N}{CBM-Q}{CBM-S}{CBM-P}  {CBM-J}  Z[~_    {CBM-J}";
+1120 fora=1to7:print"{CBM-Y}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-L}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-L}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-L}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-L}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-O}";
+1130 print"{CBM-J} "a"{CBM-J}        {CBM-J}    {CBM-J}        {CBM-J}          {CBM-J}";:next
+1140 print"{CBM-Y}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{SHIFT-@}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{SHIFT-@}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{SHIFT-@}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-L}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-O}";
+1150 print"{CBM-J}         XY    {CBM-A}{CBM-E}          {CBM-J}          {CBM-J}";
+1160 print"{CBM-J}         DE    {CBM-R}{CBM-W}          {CBM-J}          {CBM-J}";
+1170 print"{CBM-V}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{SHIFT-@}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-H}{CBM-F}{home}";:ifzzthensysry
+1180 fora=1to3000:next:goto50
