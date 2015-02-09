@@ -56,12 +56,14 @@ $1798  60          RTS
 ;of four charsets.  It will set $17A3 to either $18, $1A, $1C, or $1E.
 ;
 $1799  A9 FF       LDA #$FF
-$179b  8D 43 E8    STA $E843
+$179b  8D 43 E8    STA $E843    ;Set user port data direction to all outputs
+
 $179e  A9 00       LDA #$00
 $17a0  85 FB       STA $FB      ;Initialize pointer to charset low byte
 $17a2  A9 1E       LDA #$1E
 $17a4  85 FC       STA $FC      ;Initialize pointer to charset high byte
 $17a6  A2 00       LDX #$00     ;Initialize char count to 0 (counts up to 64)
+
 $17a8  20 8E 17    JSR $178E    ;Send one char (8 bytes) to the HAL
 $17ab  A5 FB       LDA $FB
 $17ad  18          CLC
@@ -72,10 +74,11 @@ $17b4  E6 FC       INC $FC      ;Update charset pointer high byte
 $17b6  E8          INX          ;Increment char counter
 $17b7  E0 40       CPX #$40     ;Sent all 64 characters to the HAL?
 $17b9  D0 ED       BNE $17A8    ;  No: Loop to send the next one
-$17bb  A9 4D       LDA #$4D
-$17bd  85 34       STA $34
-$17bf  A9 17       LDA #$17
-$17c1  85 35       STA $35
+
+$17bb  A9 4D       LDA #$4D     ;Set MEMSIZ pointer at (highest address used by
+$17bd  85 34       STA $34      ;  BASIC) to $174D, which is the start of
+$17bf  A9 17       LDA #$17     ;  this ML portion.  This seems redundant
+$17c1  85 35       STA $35      ;  because it is already done at $17CC.
 $17c3  60          RTS
 
 $17c4  83 85       SAX ($85,X)
@@ -85,10 +88,11 @@ $17cb  60          RTS
 
 ;Setup.  This is the first routine called by the BASIC portion.
 ;
-$17cc  A9 4D       LDA #$4D
-$17ce  85 34       STA $34
-$17d0  A9 17       LDA #$17
+$17cc  A9 4D       LDA #$4D     ;Set MEMSIZ pointer at (highest address used by
+$17ce  85 34       STA $34      ;  BASIC) to $174D, which is the start of
+$17d0  A9 17       LDA #$17     ;  this ML portion.
 $17d2  85 35       STA $35
+
 $17d4  A9 FF       LDA #$FF
 $17d6  85 2C       STA $2C
 $17d8  85 2A       STA $2A
