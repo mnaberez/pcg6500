@@ -1,4 +1,4 @@
-;Send one byte of one character to the HAL.
+;Send one byte of one character to the PCG-6500.
 ;
 $174d  48          PHA          ;Save the byte
 $174e  4A          LSR A        ;Shift high nibble -> low nibble
@@ -40,19 +40,24 @@ $1788  A9 00       LDA #$00     ;Turn off all bits
 $178a  8D 4F E8    STA $E84F    ;Put byte on user port
 $178d  60          RTS
 
-;Send one character (8 bytes) to the HAL.  The bytes are
-;sent in reverse order.
+;Send one character to the PCG-6500.  A character is 8x8 pixels, so 8 bytes
+;need to be sent (one byte per row).  The bytes are sent in the reverse
+;order from how they would appear in a CBM character ROM.
 ;
 $178e  A0 07       LDY #$07     ;Initialize index to last byte in char
 $1790  B1 FB       LDA ($FB),Y  ;A = byte of the char
-$1792  20 4D 17    JSR $174D    ;Send the byte to the HAL
+$1792  20 4D 17    JSR $174D    ;Send the byte to the PCG-6500
 $1795  88          DEY          ;Move to next byte of char
 $1796  10 F8       BPL $1790    ;Loop until all 8 bytes are sent
 $1798  60          RTS
 
-;Send a complete character set to the HAL.  This routine is
-;called from the BASIC portion.  The BASIC portion modifies the
-;byte at $17A3 (high byte of pointer to charset) to point to one
+;Send a complete character set to the PCG-6500.  The PCG can redefine up to
+;64 characters.  The PCG is used with the CBM in lowercase mode (store $0E
+;$E84C to select lowercase).  The 64 characters are written over the top half
+;of the set (screen codes $40-7F), replacing the uppercase letters.
+;
+;This routine is called from the BASIC portion.  The BASIC portion modifies
+;the byte at $17A3 (high byte of pointer to charset) to point to one
 ;of four charsets.  It will set $17A3 to either $18, $1A, $1C, or $1E.
 ;
 $1799  A9 FF       LDA #$FF
@@ -64,7 +69,7 @@ $17a2  A9 1E       LDA #$1E
 $17a4  85 FC       STA $FC      ;Initialize pointer to charset high byte
 $17a6  A2 00       LDX #$00     ;Initialize char count to 0 (counts up to 64)
 
-$17a8  20 8E 17    JSR $178E    ;Send one char (8 bytes) to the HAL
+$17a8  20 8E 17    JSR $178E    ;Send one char (8 bytes) to the PCG-6500
 $17ab  A5 FB       LDA $FB
 $17ad  18          CLC
 $17ae  69 08       ADC #$08     ;Advance 8 bytes to point to next char
@@ -72,7 +77,7 @@ $17b0  85 FB       STA $FB      ;Update charset pointer low byte
 $17b2  90 02       BCC $17B6
 $17b4  E6 FC       INC $FC      ;Update charset pointer high byte
 $17b6  E8          INX          ;Increment char counter
-$17b7  E0 40       CPX #$40     ;Sent all 64 characters to the HAL?
+$17b7  E0 40       CPX #$40     ;Sent all 64 characters?
 $17b9  D0 ED       BNE $17A8    ;  No: Loop to send the next one
 
 $17bb  A9 4D       LDA #$4D     ;Set MEMSIZ pointer at (highest address used by
